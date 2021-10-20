@@ -6,14 +6,15 @@ import bcrypt from 'bcrypt-nodejs';
 import handleRegister from './controllers/register.js';
 import handleSignin from './controllers/signin.js';
 import handleProfileGet from './controllers/profile.js';
-import handleImage from './controllers/image.js';
+import { handleImage, handleApiCall } from './controllers/image.js';
+
 
 const db = knex({
     client: 'pg',
     connection: {
       host : '127.0.0.1',
       user : 'postgres',
-      password : '2601428692',
+      password : 'rs90250',
       database : 'smart_brain'
     }
 });
@@ -39,8 +40,9 @@ app.post('/register', (req,res)=>{handleRegister(req,res,db,bcrypt)});
 
 app.get('/profile/:id', (req,res)=>{handleProfileGet(req,res,db)});
 
-app.put('/image', (req,res)=>{handleImage(req,res,db)});
+app.put('/image', (req, res) => { handleImage(req, res, db) });
+app.post('/imageurl', (req,res)=>{handleApiCall(req,res)});
 
-app.listen(3001, () => {
-    console.log("app is running on port 3001");
+app.listen(process.env.PORT || 3000, () => {
+    console.log(`app is running on port ${process.env.PORT}`);
 })
