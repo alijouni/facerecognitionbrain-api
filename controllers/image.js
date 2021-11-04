@@ -18,19 +18,21 @@ const useEffect = (callback, dependencies) => {
         callback();
       },
     });
-  };
-useEffect(()=>{const handleApiCall = (req, res) => {
-    app.models
-        .predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
-        .then(data => {
-            res.json(data);
-            console.log(data);
-        })
-    .catch(err=>res.status(400).json('Unable to work with API'))
-}},[req.body.input])
-
-
+};
+  
 const handleApiCall64 = (req, res) => {
+    useEffect(() => {
+        app.models
+            .predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
+            .then(data => {
+                res.json(data);
+                console.log(data);
+            })
+            .catch(err => res.status(400).json('Unable to work with API'))
+    }, [req.body.input])
+}
+
+const handleApiCall = (req, res) => {
     app.models
         .predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
         .then(data => {
