@@ -20,9 +20,8 @@ const db = knex({
 });
   
 const app = express();
-app.use(bodyParser.json({limit: '5mb'}));
 
-app.use(express.json());
+app.use(express.json({limit: '5mb'}));
 app.use(express.urlencoded({
   extended: true
 }));
