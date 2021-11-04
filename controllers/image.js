@@ -1,5 +1,5 @@
 import Clarifai from 'clarifai';
-import {useEffect} from 'react';
+// import {useEffect} from 'react';
 
 const app = new Clarifai.App({
     apiKey: process.env.API_CLARIFAI_KEY,
