@@ -1,5 +1,4 @@
 import express, { response } from 'express';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import knex from 'knex';
 import bcrypt from 'bcrypt-nodejs';
@@ -21,10 +20,8 @@ const db = knex({
   
 const app = express();
 
-app.use(express.json({limit: '5mb'}));
-app.use(express.urlencoded({
-  extended: true
-}));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
 
 app.use(cors());
 
