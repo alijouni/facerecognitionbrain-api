@@ -1,4 +1,5 @@
 import Clarifai from 'clarifai';
+import {useEffect} from 'react';
 
 const app = new Clarifai.App({
     apiKey: process.env.API_CLARIFAI_KEY,
@@ -13,6 +14,22 @@ const handleApiCall = (req, res) => {
     .catch(err=>res.status(400).json('Unable to work with API'))
 }
 
+const handleApiCall64 = (req, res) => {
+    useEffect(() => {
+        
+        
+        app.models.predict(Clarifai.FACE_DETECT_MODEL, req.body.input)
+        .then(data => {
+            res.json(data);
+        })
+    .catch(err=>res.status(400).json('Unable to work with API'))
+    
+    
+    
+    }, [req.body.input]);
+
+}
+
 const handleImage = (req, res, db) => {
     const { id } = req.body;
     db('users').where('id', '=', id)
@@ -24,4 +41,4 @@ const handleImage = (req, res, db) => {
     .catch(err=>res.status(400).json('Unable to get entries'))
     
 }
-export { handleApiCall, handleImage };
+export { handleApiCall, handleImage,handleApiCall64 };
