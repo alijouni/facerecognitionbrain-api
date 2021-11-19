@@ -5,7 +5,7 @@ import bcrypt from 'bcrypt-nodejs';
 import handleRegister from './controllers/register.js';
 import handleSignin from './controllers/signin.js';
 import handleProfileGet from './controllers/profile.js';
-import { handleImage, handleApiCall,handleApiCall64 } from './controllers/image.js';
+import { handleImage, handleApiCall} from './controllers/image.js';
 
 
 const db = knex({
