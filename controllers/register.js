@@ -6,6 +6,7 @@ const handleRegister = (req, res,db,bcrypt) => {
     }
 
     if(db.select('email').from('users').where('email'===email)){
+        console.log(db.select('email').from('users').where('email'===email));
         return res.status(400).json('Email found')
     }
     const hash=bcrypt.hashSync(password);
