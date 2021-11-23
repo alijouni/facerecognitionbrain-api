@@ -5,10 +5,14 @@ const handleRegister = (req, res,db,bcrypt) => {
         return res.status(400).json('Incorrect Form Submission')
     }
 
-    if(db.select('email').from('users').where('email'===email)){
-        console.log('HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO',db.select('email').from('users').where('email'===email));
-        return res.status(400).json('Email found')
-    }
+    db.select('email').from('users').where('email'===email)
+    .then(result =>{
+        if(result.length!==0){
+            return res.status(400).json('Email found');
+        }
+    })
+        
+    
     const hash=bcrypt.hashSync(password);
 
     db.transaction(trx =>{
