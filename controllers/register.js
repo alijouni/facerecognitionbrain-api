@@ -10,6 +10,7 @@ const handleRegister = (req, res,db,bcrypt) => {
         if(result.length!==0){
             return res.status(400).json('Email found');
         }
+        else {return console.log('Email not found')}
     })
         
     
