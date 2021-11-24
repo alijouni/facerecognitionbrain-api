@@ -5,7 +5,7 @@ const handleRegister = (req, res,db,bcrypt) => {
         return res.status(400).json('Incorrect Form Submission')
     }
 
-    db.select('email').from('users').where('email'===email)
+    db.select('email').from('users').where('email'=email)
     .then(result =>{
         if(result.length!==0){
             return res.status(400).json('Email found');
